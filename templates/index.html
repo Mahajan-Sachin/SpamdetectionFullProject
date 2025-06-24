@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spam Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 60%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .emoji {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📩 Spam Detector</h1>
+        <form method="POST">
+            <label for="message"><strong>Enter a message:</strong></label><br><br>
+            <textarea name="message" placeholder="Type something here...">{{ user_input }}</textarea><br>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <p>🧠 Prediction for "<strong>{{ user_input }}</strong>":</p>
+                {% if prediction == "spam" %}
+                    <p class="emoji">👉 <span style="color:crimson; font-weight:bold;">Spam ❌</span></p>
+                {% else %}
+                    <p class="emoji">👉 <span style="color:green; font-weight:bold;">Not Spam ✅</span></p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
